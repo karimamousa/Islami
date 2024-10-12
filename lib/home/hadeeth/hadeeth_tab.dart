@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islami_app/home/hadeeth/item_hadeth_name.dart';
 
 import '../../colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 
@@ -15,6 +17,9 @@ class _HadeethTabState extends State<HadeethTab> {
 
   @override
   Widget build(BuildContext context) {
+    if(ahadethList.isEmpty){
+      loadHadethFile();
+    }
     return Column(
       children: [
         Expanded(child: Image.asset('assets/images/hadeeth_logo.png')),
@@ -22,7 +27,7 @@ class _HadeethTabState extends State<HadeethTab> {
           color: AppColors.primaryLightColor,
           thickness: 3,
         ),
-        Text('Hadeeth Name',
+        Text(AppLocalizations.of(context)!.hadeth_name,
           style: Theme.of(context).textTheme.bodyMedium,),
         Divider(
           color: AppColors.primaryLightColor,
@@ -42,7 +47,7 @@ class _HadeethTabState extends State<HadeethTab> {
               );
             },
             itemBuilder: (context,index){
-              return Text(ahadethList[index].title);
+              return ItemHadethName(hadeth: ahadethList[index],);
             },
             itemCount: ahadethList.length,
 
