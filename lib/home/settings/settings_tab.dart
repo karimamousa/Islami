@@ -16,9 +16,14 @@ class SettingsTab extends StatefulWidget {
 
 class _SettingsTabState extends State<SettingsTab> {
 
+
   @override
   Widget build(BuildContext context) {
     var provider= Provider.of<AppConfigProvider>(context);
+    Map <String,String>languages = { //for when i have multiple languages
+      'en': AppLocalizations.of(context)!.english,
+      'ar': AppLocalizations.of(context)!.arabic
+    };
     return Container(
       margin: EdgeInsets.all(15),
       child: Column(
@@ -37,15 +42,16 @@ class _SettingsTabState extends State<SettingsTab> {
             child: Container(
               padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
-                color: AppColors.primaryLightColor,
+                color: provider.isDarkMode()?
+                AppColors.yellowColor:
+                AppColors.primaryLightColor,
                 borderRadius: BorderRadius.circular(15)
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(provider.appLanguage=='en'?
-                    AppLocalizations.of(context)!.english:
-                    AppLocalizations.of(context)!.arabic,
+                  Text(
+                    languages[provider.appLanguage]!,
                   style: Theme.of(context).textTheme.bodySmall,),
                   Icon(Icons.arrow_drop_down,size: 35,)
                 ],
@@ -69,15 +75,17 @@ class _SettingsTabState extends State<SettingsTab> {
             child: Container(
               padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
-                  color: AppColors.primaryLightColor,
+                  color: provider.isDarkMode()?
+                  AppColors.yellowColor:
+                  AppColors.primaryLightColor,
                   borderRadius: BorderRadius.circular(15)
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(provider.appLanguage=='en'?
-                  AppLocalizations.of(context)!.english:
-                  AppLocalizations.of(context)!.arabic,
+                  Text(provider.isDarkMode()?
+                  AppLocalizations.of(context)!.dark:
+                  AppLocalizations.of(context)!.light,
                     style: Theme.of(context).textTheme.bodySmall,),
                   Icon(Icons.arrow_drop_down,size: 35,)
                 ],

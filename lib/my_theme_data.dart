@@ -53,6 +53,9 @@ class MyThemeData{
         )
 
     ),
+    bottomSheetTheme:BottomSheetThemeData(
+      backgroundColor: AppColors.primaryDarkColor
+    ) ,
     textTheme: const TextTheme(
       bodyLarge: TextStyle(
           color: AppColors.whiteColor,

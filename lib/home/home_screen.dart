@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/home/settings/settings_tab.dart';
+import 'package:islami_app/providers/app_config_provider.dart';
+import 'package:provider/provider.dart';
 import '../colors.dart';
 import '../home/quran/quran_tab.dart';
 import '../home/hadeeth/hadeeth_tab.dart';
@@ -20,8 +22,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Stack(
       children: [
+        provider.isDarkMode()?
+        Image.asset('assets/images/main_background_dark.png',
+          width: double.infinity,
+          height: double.infinity,
+          fit: BoxFit.fill, //law la2a space yzbto
+        ):
         Image.asset('assets/images/main_background.png',
           width: double.infinity,
           height: double.infinity,

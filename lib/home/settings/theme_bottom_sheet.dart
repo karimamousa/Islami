@@ -23,7 +23,7 @@ class _LanguageBottomSheetState extends State<ThemeBottomSheet> {
             onTap: (){
               provider.changeTheme(ThemeMode.dark);
             },
-            child: provider.appTheme == ThemeMode.dark?
+            child: provider.isDarkMode()?
                 getSelectedItemWidget(AppLocalizations.of(context)!.dark):
                 getUnseletedItemWidget(AppLocalizations.of(context)!.dark)
           ),
@@ -33,11 +33,10 @@ class _LanguageBottomSheetState extends State<ThemeBottomSheet> {
           InkWell(
             onTap: (){
               provider.changeTheme(ThemeMode.light);
-              //change lang to arabic
             },
-            child: provider.appTheme ==ThemeMode.light?
-                getSelectedItemWidget(AppLocalizations.of(context)!.light):
-                getUnseletedItemWidget(AppLocalizations.of(context)!.light)
+            child: provider.isDarkMode()?
+                getUnseletedItemWidget(AppLocalizations.of(context)!.light):
+                getSelectedItemWidget(AppLocalizations.of(context)!.light)
           )
         ],
       ),

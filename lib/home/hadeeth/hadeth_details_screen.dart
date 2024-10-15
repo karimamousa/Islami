@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:islami_app/colors.dart';
 import 'package:islami_app/home/hadeeth/item_hadeth_details.dart';
 import 'package:islami_app/home/quran/item_sura_details.dart';
+import 'package:provider/provider.dart';
+import '../../providers/app_config_provider.dart';
 import 'hadeeth_tab.dart';
 
 class HadethDetailsScreen extends StatelessWidget {
@@ -10,10 +12,17 @@ class HadethDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider=Provider.of<AppConfigProvider>(context);
     var args = ModalRoute.of(context)?.settings.arguments as Hadeth;
 
     return Stack(
       children: [
+        provider.isDarkMode()?
+        Image.asset('assets/images/main_background_dark.png',
+          width: double.infinity,
+          height: double.infinity,
+          fit: BoxFit.fill, //law la2a space yzbto
+        ):
         Image.asset('assets/images/main_background.png',
           width: double.infinity,
           height: double.infinity,
@@ -33,7 +42,10 @@ class HadethDetailsScreen extends StatelessWidget {
               vertical: MediaQuery.of(context).size.height*0.05
             ),
             decoration: BoxDecoration(
-              color: AppColors.whiteColor,
+            color:
+            provider.isDarkMode()?
+               AppColors.primaryDarkColor:
+               AppColors.whiteColor,
               borderRadius: BorderRadius.circular(90)
             ),
             child: ListView.builder(
